@@ -1,0 +1,12 @@
+.header {
+  background-color: rgb(255, 255, 255);
+  border-bottom: 2px solid rgb(231, 235, 238);
+}
+
+.navbar-log {
+  width: 100%; /* Tailwind class w-full */
+  background-image: url("https://static.resumecoach.com/assets/rch/logo_desktop.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
