@@ -1,11 +1,12 @@
 import "./App.css";
+import { LanguageContextProvider } from "./components";
 import MainCV from "./page/mainCV";
 
 function App() {
   return (
-    <div>
+    <LanguageContextProvider>
       <MainCV />
-    </div>
+    </LanguageContextProvider>
   );
 }
 
