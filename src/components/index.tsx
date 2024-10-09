@@ -2,9 +2,9 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 export enum Language {
   VIETNAMESE = "vn",
-  ENGLISH = "eng",
   FRANCE = "fr",
   USA = "us",
+  ANDORRA = "ad",
 }
 
 interface ILanguageProps {
@@ -12,14 +12,14 @@ interface ILanguageProps {
   setLanguage: (value: Language) => void;
 }
 export const LanguageContext = createContext<ILanguageProps>({
-  language: Language.ENGLISH,
+  language: Language.USA,
   setLanguage: () => {},
 });
 
 export const LanguageContextProvider: React.ComponentType<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(Language.ENGLISH);
+  const [language, setLanguage] = useState<Language>(Language.USA);
 
   return (
     <LanguageContext.Provider

@@ -1,26 +1,8 @@
-import { Menu, MenuButton, MenuItem } from "@mui/base";
-import { Dropdown } from "@mui/base/Dropdown";
+import { Option, Select } from "@mui/base";
+import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
 import LanguageIcon from "@mui/icons-material/Language";
-import React, { useContext } from "react";
 import { Language, useLanguageContext } from "../../../components";
 import "./styles.scss";
-
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-
 interface ILanguageOption {
   id: Language;
   label: string;
@@ -29,14 +11,14 @@ interface ILanguageOption {
 
 const languages: ILanguageOption[] = [
   {
-    id: Language.ENGLISH,
-    label: "English",
-    value: Language.ENGLISH,
+    id: Language.ANDORRA,
+    label: "Andorra",
+    value: Language.ANDORRA,
   },
   {
-    id: Language.ENGLISH,
+    id: Language.USA,
     label: "USA",
-    value: Language.ENGLISH,
+    value: Language.USA,
   },
   {
     id: Language.FRANCE,
@@ -45,100 +27,48 @@ const languages: ILanguageOption[] = [
   },
 ];
 
-const languages1: ILanguageProps = [
-  {
-    id: "ENG",
-    label: "English",
-    value: "ENG",
-  },
-  {
-    id: "US",
-    label: "USA",
-    value111: "US",
-  },
-  {
-    id: "FRANCE",
-    label: "France",
-    value123: "FRANCE",
-  },
-];
-
 // type Language = typeof languages;
-
-type ILanguageProps = {
-  id: string;
-  label: string;
-  value?: string;
-  value111?: number;
-  value123?: string;
-}[];
 
 const Header = () => {
   const { language, setLanguage } = useLanguageContext();
 
-  console.log({ language });
-
-  const [age, setAge] = React.useState("");
-  const [openLanguage, setOpenLanguage] = React.useState(false);
-  const handleChange = (event: { target: { value: string } }) => {
-    setAge(event.target.value);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
   return (
     <>
       <div className="header h-16 grid grid-cols-12">
-        <div className=" px-6 col-span-2 border-r-2 border-[rgb(231, 235, 238)]">
+        <div className=" flex items-center justify-center px-6 col-span-2 border-r-2 border-[rgb(231, 235, 238)]">
           <div className="navbar-log">.</div>
         </div>
-        <div className="col-span-8">
-          <span>duyle</span>
+        <div className="col-span-8"></div>
+        <div className="content-center col-span-1 border-r">
+          <Select
+            className="rounded-sm w-1/2 bg-[#F0F3F5] cursor-pointer"
+            placeholder="country…"
+          >
+            {languages.map((country) => (
+              <Option
+                key={country.id}
+                value={country.value}
+                label={country.label}
+                className="flex border-b-[1px] w-[100px] p-2 hover:bg-[#F5F5F5]"
+              >
+                <img
+                  loading="lazy"
+                  width={20}
+                  height={14}
+                  srcSet={`https://flagcdn.com/w40/${country.id.toLowerCase()}.png 2x`}
+                  src={`https://flagcdn.com/w20/${country.id.toLowerCase()}.png`}
+                  alt={`Flag of ${country.label}`}
+                  className="mx-1"
+                />
+                {country.label}
+              </Option>
+            ))}
+          </Select>
         </div>
-        <div className="col-span-1">
-          <div>
-            {/* <FormControl sx={{ m: 1, minWidth: 80, height: 0 }}>
-            <InputLabel id="demo-controlled-open-select-label">Age</InputLabel>
-            <TextField
-              id="outlined-select-currency"
-              select
-              label="Select"
-              defaultValue="EUR"
-              helperText="Please select your currency"
-            ></TextField>
-          </FormControl> */}
-          </div>
+        <div className="col-span-1 flex items-center justify-center hover:text-blue-500">
+          <HomeTwoToneIcon className=" cursor-pointer" />
         </div>
       </div>
-      <Dropdown
-        defaultOpen
-        onOpenChange={() => {
-          setOpenLanguage(!openLanguage);
-          console.log("onOpenChange");
-        }}
-      >
-        <MenuButton>
-          <LanguageIcon></LanguageIcon>
-        </MenuButton>
-        <Menu onItemsChange={(items: string[]) => console.log(items)}>
-          {languages.map(({ id, label, value }) => (
-            <MenuItem
-              key={id}
-              onClick={() => {
-                setLanguage(value);
-                setOpenLanguage(!openLanguage);
-              }}
-            >
-              {label}
-            </MenuItem>
-          ))}
-        </Menu>
-      </Dropdown>
     </>
   );
 };

@@ -1,10 +1,13 @@
+import { Box } from "@mui/material";
 import Header from "./header";
+import BodyCV from "./main";
 
 const MainCV = () => {
   return (
-    <div>
+    <Box>
       <Header />
-    </div>
+      <BodyCV />
+    </Box>
   );
 };
 export default MainCV;
