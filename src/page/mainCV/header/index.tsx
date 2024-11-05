@@ -1,8 +1,8 @@
-import { Option, Select } from "@mui/base";
-import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
-import LanguageIcon from "@mui/icons-material/Language";
-import { Language, useLanguageContext } from "../../../components";
-import "./styles.scss";
+import { Option, Select, SelectOption, SelectValue } from '@mui/base';
+import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
+import LanguageIcon from '@mui/icons-material/Language';
+import { Language, useLanguageContext } from '../../../components';
+import './styles.scss';
 interface ILanguageOption {
   id: Language;
   label: string;
@@ -12,17 +12,17 @@ interface ILanguageOption {
 const languages: ILanguageOption[] = [
   {
     id: Language.ANDORRA,
-    label: "Andorra",
+    label: 'Andorra',
     value: Language.ANDORRA,
   },
   {
     id: Language.USA,
-    label: "USA",
+    label: 'USA',
     value: Language.USA,
   },
   {
     id: Language.FRANCE,
-    label: "France",
+    label: 'France',
     value: Language.FRANCE,
   },
 ];
@@ -31,6 +31,15 @@ const languages: ILanguageOption[] = [
 
 const Header = () => {
   const { language, setLanguage } = useLanguageContext();
+
+  const handleChangeLanguage = (
+    _event: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: SelectValue<Language, false>
+  ) => {
+    if (value) {
+      setLanguage(value);
+    }
+  };
 
   return (
     <>
@@ -43,6 +52,20 @@ const Header = () => {
           <Select
             className="rounded-sm w-1/2 bg-[#F0F3F5] cursor-pointer"
             placeholder="country…"
+            onChange={handleChangeLanguage}
+            renderValue={() => {
+              return (
+                <img
+                  loading="lazy"
+                  width={20}
+                  height={14}
+                  srcSet={toFlagCdnImageUrl(language)}
+                  src={toFlagCdnImageUrl(language)}
+                  alt={`Flag of ${languages.find((e) => e.value === language)}`}
+                  className="mx-1"
+                />
+              );
+            }}
           >
             {languages.map((country) => (
               <Option
@@ -55,8 +78,8 @@ const Header = () => {
                   loading="lazy"
                   width={20}
                   height={14}
-                  srcSet={`https://flagcdn.com/w40/${country.id.toLowerCase()}.png 2x`}
-                  src={`https://flagcdn.com/w20/${country.id.toLowerCase()}.png`}
+                  srcSet={toFlagCdnImageUrl(country.id)}
+                  src={toFlagCdnImageUrl(country.id)}
                   alt={`Flag of ${country.label}`}
                   className="mx-1"
                 />
@@ -73,3 +96,7 @@ const Header = () => {
   );
 };
 export default Header;
+
+function toFlagCdnImageUrl(language: Language): string {
+  return `https://flagcdn.com/w20/${language.toLowerCase()}.png`;
+}

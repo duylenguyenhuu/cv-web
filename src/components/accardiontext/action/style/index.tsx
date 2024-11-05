@@ -21,7 +21,7 @@ const IStyle = () => {
       <FormControl sx={{ m: 1, minWidth: 120, boxShadow: "none" }}>
         <FormHelperText sx={{ margin: "unset" }}>With label</FormHelperText>
         <Select
-          className="Duy"
+          className="h-10 text-lg"
           value={age}
           onChange={handleChange}
           displayEmpty

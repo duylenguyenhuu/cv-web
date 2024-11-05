@@ -4,15 +4,16 @@ import {
   AccordionSummary,
   Box,
   Typography,
-} from "@mui/material";
-import React from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import TocOutlinedIcon from "@mui/icons-material/TocOutlined";
-import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
-import DataObjectOutlinedIcon from "@mui/icons-material/DataObjectOutlined";
-import AccountTreeOutlinedIcon from "@mui/icons-material/AccountTreeOutlined";
+} from '@mui/material';
+import React, { useContext } from 'react';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
+import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
+import DataObjectOutlinedIcon from '@mui/icons-material/DataObjectOutlined';
+import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
+import { LanguageContext } from '..';
 
 interface IAccardion {
   icon: React.ReactNode;
@@ -21,7 +22,7 @@ interface IAccardion {
 const listIcon: IAccardion[] = [
   {
     icon: <AccountCircleOutlinedIcon />,
-    label: "Contact Information",
+    label: 'Contact Information',
   },
   {
     icon: (
@@ -38,27 +39,49 @@ const listIcon: IAccardion[] = [
         ></path>
       </svg>
     ),
-    label: "Education",
+    label: 'Education',
   },
   {
     icon: <TocOutlinedIcon />,
-    label: "Skills",
+    label: 'Skills',
   },
   {
     icon: <LanguageOutlinedIcon />,
-    label: "Languages",
+    label: 'Languages',
   },
   {
     icon: <DataObjectOutlinedIcon />,
-    label: "Objective",
+    label: 'Objective',
   },
   {
     icon: <AccountTreeOutlinedIcon />,
-    label: "Project",
+    label: 'Project',
+  },
+  {
+    icon: <AccountTreeOutlinedIcon />,
+    label: 'Project',
+  },
+  {
+    icon: <AccountTreeOutlinedIcon />,
+    label: 'Project',
+  },
+  {
+    icon: <AccountTreeOutlinedIcon />,
+    label: 'Project',
+  },
+  {
+    icon: <AccountTreeOutlinedIcon />,
+    label: 'Project',
+  },
+  {
+    icon: <AccountTreeOutlinedIcon />,
+    label: 'Project',
   },
 ];
 const AccordionPros = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
+  const { language } = useContext(LanguageContext);
+  console.log(language);
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
@@ -68,13 +91,13 @@ const AccordionPros = () => {
   return (
     <Box>
       <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
+        expanded={expanded === 'panel1'}
+        onChange={handleChange('panel1')}
         sx={{
-          borderBottomColor: "-moz-initial",
-          borderBottom: "2px",
-          backgroundColor: "rgb(240,243,245)",
-          boxShadow: "none",
+          borderBottomColor: '-moz-initial',
+          borderBottom: '2px',
+          backgroundColor: 'rgb(240,243,245)',
+          boxShadow: 'none',
         }}
       >
         <AccordionSummary
@@ -83,7 +106,7 @@ const AccordionPros = () => {
           id="panel1bh-header"
         >
           <ArticleOutlinedIcon />
-          <Typography sx={{ width: "50%", flexShrink: 0, marginLeft: "12px" }}>
+          <Typography sx={{ width: '50%', flexShrink: 0, marginLeft: '12px' }}>
             Sections
           </Typography>
         </AccordionSummary>

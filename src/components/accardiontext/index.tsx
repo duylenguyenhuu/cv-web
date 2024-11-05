@@ -11,6 +11,7 @@ import React from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import IStyle from "./action/style";
 import ISize from "./action/size";
+import Spacing from "./action/spacing";
 
 const AccordionText = () => {
   const [expanded, setExpanded] = React.useState<string | false>(false);
@@ -39,7 +40,7 @@ const AccordionText = () => {
         >
           <TitleOutlinedIcon />
           <Typography sx={{ width: "50%", flexShrink: 0, marginLeft: "12px" }}>
-            Sections
+            Text
           </Typography>
         </AccordionSummary>
 
@@ -57,7 +58,7 @@ const AccordionText = () => {
                 <ISize />
               </Grid2>
               <Grid2 size={6}>
-                <div>3</div>
+                <Spacing />
               </Grid2>
               <Grid2 size={6}>
                 <div>4</div>
